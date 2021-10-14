@@ -6,3 +6,8 @@
   from = "/*"
   to = "/not-found.html"
   status = 404
+
+[[redirects]]
+  from = "**/config.yml"
+  to = "/config.yml"
+  status = 200
