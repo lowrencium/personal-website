@@ -4,7 +4,7 @@ const {title} = Astro.props;
 
 <html>
   <head>
-    <title>Example Layout: {title}</title>
+    <title>{title}</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
@@ -12,27 +12,10 @@ const {title} = Astro.props;
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
     <link rel="stylesheet" href="{Astro.resolve('../styles/global.css')}">
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Posts</a>
-      <a href="#">Contact</a>
-    </nav>
 
     <slot />
 
-    <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/";
-            });
-          }
-        });
-      }
-    </script>
   </body>
 </html>
