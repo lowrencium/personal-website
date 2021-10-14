@@ -8,6 +8,6 @@
   status = 404
 
 [[redirects]]
-  from = "**/config.yml"
+  from = "/**/config.yml"
   to = "/config.yml"
   status = 200
