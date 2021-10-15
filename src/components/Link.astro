@@ -1,0 +1,25 @@
+---
+export let link: {
+    url: string,
+    title: string,
+    date: string,
+    body: string,
+    tags: string[]
+}
+---
+
+<article>
+    <h3>
+        <a href={link.url}>
+            {link.title}
+        </a>
+    </h3>
+
+    {post.body && (
+        <p>{post.body}</p>
+    )}
+</article>
+
+<style lang="sass">
+
+</style>

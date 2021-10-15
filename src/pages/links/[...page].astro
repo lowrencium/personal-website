@@ -1,0 +1,19 @@
+---
+import Link  from '../../components/Link.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Links';
+
+export async function getStaticPaths({ paginate }) {
+  const links = Astro.fetchContent('/_posts/links/*.md').sort((a, b) => new Date(b.date) - new Date(a.date));
+  return paginate(links, { pageSize: 10 });
+}
+
+const { page } = Astro.props;
+---
+
+<BaseLayout title={title}>
+    <h1>{title}</h1>
+
+    {page.data.map((link) => (<Link link={link} />))}
+</BaseLayout>
