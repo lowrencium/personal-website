@@ -1,0 +1,30 @@
+---
+import LinkLayout from '../../../../layouts/LinkLayout.astro';
+import Link from '../../../../components/Link.astro';
+import Pagination from '../../../../components/Pagination.astro';
+
+export async function getStaticPaths({paginate}) {
+    const tags = new Map();
+    Astro.fetchContent('../../../../_posts/links/*.md').forEach(link => {
+        link.tags.forEach(tag => {
+            const tagLinks = tags.get(tag) || [];
+            tagLinks.push(link);
+
+            tags.set(tag, tagLinks);
+        });
+    });
+
+    return Array.from(tags, ([tag, links]) => paginate(links, { params: { tag }, pageSize: 5 }));
+}
+
+const { tag } = Astro.request.params;
+const { page } = Astro.props;
+---
+
+<LinkLayout>
+    <h2>{tag}</h2>
+
+    {page.data.map((link) => (<Link link={link} />))}
+
+    <Pagination page={page} />
+</LinkLayout>

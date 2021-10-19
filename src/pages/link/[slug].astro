@@ -1,0 +1,15 @@
+---
+import Link from '../../components/Link.astro';
+import LinkLayout from '../../layouts/LinkLayout.astro';
+
+export async function getStaticPaths() {
+    return Astro.fetchContent('../../_posts/links/*.md').map((link) => ({ params: { slug: link.file.pathname.split('/').slice(-1).pop().replace('.md', '') }, props: { link } }));
+}
+
+const {slug} = Astro.request.params;
+const {link} = Astro.props;
+---
+
+<LinkLayout>
+    <Link link={link} />
+</LinkLayout>

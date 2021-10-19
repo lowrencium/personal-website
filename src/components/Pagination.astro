@@ -1,0 +1,10 @@
+---
+const { page } = Astro.props;
+---
+
+<div class="wrapper">
+  <nav class="nav">
+    <a class={`${page.url.prev ? 'prev' : 'hidden'}`} href={page.url.prev || '#'} aria-label="Previous Page">Prev</a>
+    <a class={`${page.url.next ? 'next' : 'hidden'}`} href={page.url.next || '#'} aria-label="Next Page">Next</a>
+  </nav>
+</div>
