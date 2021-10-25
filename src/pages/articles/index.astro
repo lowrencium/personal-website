@@ -1,0 +1,10 @@
+---
+import LinkLayout from '../../layouts/LinkLayout.astro';
+import ArticlePreview from '../../components/ArticlePreview.astro';
+
+const articles = Astro.fetchContent('../../_posts/articles/*.md').sort((a, b) => new Date(b.date) - new Date(a.date));
+---
+
+<LinkLayout>
+    {articles.map((article) => (<ArticlePreview article={article} />))}
+</LinkLayout>

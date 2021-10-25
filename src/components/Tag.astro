@@ -1,7 +1,7 @@
 ---
-const { tag } = Astro.props;
+const { tag, category } = Astro.props;
 ---
 
-<a href={`/links/tag/${tag}`} class="px-2 py-1 ml-1 my-1 bg-gray-100 cursor-pointer transition hover:bg-gray-200 overflow-ellipsis">
+<a href={`/${category}/tag/${tag}`} class="px-2 py-1 ml-1 my-1 bg-gray-100 cursor-pointer transition hover:bg-gray-200 overflow-ellipsis">
     {tag}
 </a>
