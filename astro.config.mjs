@@ -5,5 +5,5 @@ export default {
     devOptions: {
         tailwindConfig: './tailwind.config.js',
     },
-    renderers: [],
+    renderers: ['@astrojs/renderer-svelte'],
 };
