@@ -6,12 +6,19 @@
     if (!isSSR) {
         mode = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
 
+        const localStorageMode = localStorage.getItem('prefers-color-scheme');
+        if (localStorageMode === 'dark' || localStorageMode === 'light') {
+            mode = localStorageMode;
+        }
+
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
             mode = e.matches ? 'dark' : 'light';
         });
     }
 
     $: if (!isSSR) {
+        localStorage.setItem('prefers-color-scheme', mode);
+
         if (mode === 'dark') {
             document.documentElement.classList.add('dark');
         } else {
