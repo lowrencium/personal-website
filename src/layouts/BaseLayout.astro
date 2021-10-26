@@ -16,6 +16,10 @@ const {title} = Astro.props;
     <link rel="stylesheet" href="{Astro.resolve('../styles/global.css')}">
   </head>
   <body class="font-mono bg-gray-100 min-h-screen">
+    <div class="sticky top-0 z-40 lg:z-50 w-full max-w-8xl mx-auto bg-white flex-none flex">
+        Test
+    </div>
+
     <ColorScheme client:load />
 
     <slot />

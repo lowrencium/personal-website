@@ -3,8 +3,24 @@ import LinkLayout from '../../layouts/LinkLayout.astro';
 import ArticlePreview from '../../components/ArticlePreview.astro';
 
 const articles = Astro.fetchContent('../../_posts/articles/*.md').sort((a, b) => new Date(b.date) - new Date(a.date));
+const articlesByYear = new Map();
+articles.forEach(article => {
+    const year = new Date(article.date).getFullYear();
+    if (!articlesByYear.has(year)) {
+        articlesByYear.set(year, [article]);
+    } else {
+        articlesByYear.set(year, [...articlesByYear.get(year), article]);
+    }
+});
 ---
 
 <LinkLayout>
-    {articles.map((article) => (<ArticlePreview article={article} />))}
+    {Array.from(articlesByYear).map(([year, articles]) => (
+        <>
+            <h2>{year}</h2>
+            {
+                articles.map((article) => (<ArticlePreview article={article} />))
+            }
+        </>
+    ))}
 </LinkLayout>
